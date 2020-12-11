@@ -10,6 +10,8 @@ router.use(async (req, res, next) => {
   // Search if username exists.
   const foundByUsername = await User.findOne({ username });
 
+  console.log(foundByUsername);
+
   if (foundByUsername !== null) {
     const isValidPassword = await foundByUsername.checkPassword(password);
     if (isValidPassword) {
