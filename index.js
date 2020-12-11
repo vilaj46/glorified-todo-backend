@@ -27,11 +27,15 @@ app.use(cookieParser());
 const options = { useUnifiedTopology: true, useNewUrlParser: true };
 mongoose
   .connect(
-    `mongodb://${process.env.MLAB_USER}:${process.env.MLAB_PW}@ds259577.mlab.com:59577/glorified-todo`,
+    `mongodb+srv://${process.env.MLAB_USER}:${process.env.MLAB_PW}@cluster0.lrx0x.mongodb.net/Cluster0?retryWrites=true&w=majority`,
+    // `mongodb://${process.env.MLAB_USER}:${process.env.MLAB_PW}@ds259577.mlab.com:59577/glorified-todo`,
     options
   )
   .then(() => {
     console.log("Connected to Mlab MongoDB.");
+  })
+  .catch((err) => {
+    console.log(err);
   });
 
 mongoose.set("useFindAndModify", false);
