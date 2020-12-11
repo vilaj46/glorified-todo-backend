@@ -42,7 +42,7 @@ mongoose.set("useFindAndModify", false);
 
 // Routes
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.send("Hello World!1");
 });
 
 // Authentication Routes
