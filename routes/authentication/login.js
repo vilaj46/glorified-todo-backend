@@ -13,7 +13,6 @@ router.use(async (req, res, next) => {
   console.log(foundByUsername);
 
   if (foundByUsername !== null) {
-    console.log("Found username");
     const isValidPassword = await foundByUsername.checkPassword(password);
     if (isValidPassword) {
       const token = await foundByUsername.createJWT();
@@ -27,12 +26,10 @@ router.use(async (req, res, next) => {
       res.status(406).send("password");
     }
   } else if (foundByUsername === null) {
-    console.log("Did not find username");
     // Username was not found.
     res.status(406).send("username");
   } else {
     // Something else went wrong.
-    console.log("Did not find username 2");
     res.status(400);
   }
   next();
