@@ -6,11 +6,8 @@ const router = express.Router();
 
 router.use(async (req, res, next) => {
   const { username, password } = req.body;
-  console.log(username, password);
   // Search if username exists.
   const foundByUsername = await User.findOne({ username });
-
-  console.log(foundByUsername);
 
   if (foundByUsername !== null) {
     const isValidPassword = await foundByUsername.checkPassword(password);
