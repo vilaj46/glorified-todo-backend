@@ -8,16 +8,26 @@ router.use((req, res, next) => {
   const token = authorization.split(" ")[1];
   const decodedToken = jwt_decode(token);
 
-  // console.log(req.cookies);
-  console.log(req.headers.authorization);
-
   const { session_id } = req.cookies;
+  const { authorization } = req.headers;
 
-  if (session_id === undefined) {
+  if (
+    session_id === undefined &&
+    (uthorization.length === 0 || authorization === undefined)
+  ) {
     return res.sendStatus(403);
   }
 
-  const decodedCookie = jwt_decode(session_id);
+  let decodedCookie;
+
+  // const decodedCookie = jwt_decode(session_id);
+
+  if (session_id) {
+    decodedCookie = jwt_decode(session_id);
+  } else if (authorization) {
+    console.log(authorization.split(" ")[1]);
+    decodedCookie = jwt_decode(authorization.split(" ")[1]);
+  }
 
   if (
     Date.now() >= decodedToken.exp * 1000 ||
