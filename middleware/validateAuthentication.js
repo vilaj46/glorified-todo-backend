@@ -8,6 +8,8 @@ router.use((req, res, next) => {
   const token = authorization.split(" ")[1];
   const decodedToken = jwt_decode(token);
 
+  console.log(req.cookies);
+
   const { session_id } = req.cookies;
 
   if (session_id === undefined) {
