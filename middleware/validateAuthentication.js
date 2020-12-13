@@ -9,7 +9,7 @@ router.use((req, res, next) => {
   const decodedToken = jwt_decode(token);
 
   console.log(req.cookies);
-  console.log(req.headers.cookies);
+  console.log(req);
 
   const { session_id } = req.cookies;
 
