@@ -11,8 +11,6 @@ router.post("/", (req, res) => {
   const { userID } = req.params;
   const newItem = req.body;
 
-  console.log(req.headers);
-
   User.findById(userID, async (err, doc) => {
     if (err) return res.sendStatus(500); // Not sure, something went wrong. Could not find user.
 
