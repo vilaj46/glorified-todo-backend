@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import { MongoClient } from "mongodb";
 
 // cd C:\"Program Files"\MongoDB\Server\4.4\bin
 
@@ -34,6 +35,18 @@ mongoose
   )
   .then(() => {
     console.log("Connected to Mlab MongoDB.");
+      // const uri =
+      //   `mongodb+srv://${process.env.MLAB_USER}:${process.env.MLAB_PW}@cluster0.lrx0x.mongodb.net/Cluster0?retryWrites=true&w=majority`;
+      // const client = new MongoClient(uri, {
+      //   useNewUrlParser: true,
+      //   useUnifiedTopology: true,
+      // });
+      // client.connect((err) => {
+      //   const collection = client.db("test").collection("devices");
+      //   console.log("Connected to Mlab MongoDB again.")
+      //   // perform actions on the collection object
+      //   client.close();
+      // });
   })
   .catch((err) => {
     console.log(err);
